@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import SideBar from "@/components/Sidebar";
+import { RiBarChart2Fill } from "react-icons/ri";
+import { IoChatboxSharp } from "react-icons/io5";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +28,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistMono.className}`}>
+        <SideBar
+          links={[
+            {
+              name: "Dashboard",
+              icon: <RiBarChart2Fill />,
+            },
+            {
+              name: "Chat",
+              icon: <IoChatboxSharp />,
+            },
+          ]}
+        />
+        <div className="bg-[#F6F6F6] w-[85vw] h-[100vh] right-0 absolute">
+          {children}
+        </div>
       </body>
     </html>
   );
