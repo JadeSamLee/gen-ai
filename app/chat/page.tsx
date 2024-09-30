@@ -9,12 +9,16 @@ interface ChatMessage {
 }
 
 const Page = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    { id: 1, message: "Hello", sender: "John Doe" },
-    { id: 2, message: "Hi", sender: "Jane Doe" },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   const [inputValue, setInputValue] = useState("");
+
+  const cardContents = [
+    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+  ];
 
   const handleSendMessage = () => {
     if (inputValue.trim() === "") return;
@@ -22,7 +26,7 @@ const Page = () => {
     const newMessage: ChatMessage = {
       id: messages.length + 1,
       message: inputValue,
-      sender: "John Doe",
+      sender: "Krish",
     };
 
     setMessages((prevMessages) => [...prevMessages, newMessage]);
@@ -36,38 +40,53 @@ const Page = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100">
-      <div className="h-[90%] p-5">
-        <div className="overflow-y-auto h-full flex flex-col space-y-2">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`p-2 ${
-                msg.sender === "John Doe" ? "text-right" : "text-left"
-              }`}
-            >
-              <div
-                className={`p-3 rounded-lg inline-block max-w-xs ${
-                  msg.sender === "John Doe"
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-300 text-black"
-                } shadow-md`}
-              >
-                <p className="text-sm mb-1 text-left">{msg.message}</p>
-                <p
-                  className={`text-xs ${
-                    msg.sender === "John Doe"
-                      ? "text-gray-400"
-                      : "text-gray-600"
-                  } `}
-                >
-                  - {msg.sender}
-                </p>
+    <div className="h-screen flex flex-col justify-end bg-gray-100">
+      {messages.length == 0 ? (
+        <div className="flex flex-col ">
+          <div className="grid grid-cols-4 gap-10 p-5">
+            {cardContents.map((card) => (
+              <div className="flex flex-col p-7 border bg-gray-200 text-black rounded-xl cursor-pointer">
+                <p className="text-md font-bold">{card}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="h-full">
+          <div className="h-[90%] p-5">
+            <div className="overflow-y-auto h-full flex flex-col space-y-2">
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`p-2 ${
+                    msg.sender === "Krish" ? "text-right" : "text-left"
+                  }`}
+                >
+                  <div
+                    className={`p-3 rounded-lg inline-block max-w-xs ${
+                      msg.sender === "Krish"
+                        ? "bg-gray-800 text-white"
+                        : "bg-gray-300 text-black"
+                    } shadow-md`}
+                  >
+                    <p className="text-sm mb-1 text-left">{msg.message}</p>
+                    <p
+                      className={`text-xs ${
+                        msg.sender === "Krish"
+                          ? "text-gray-400"
+                          : "text-gray-600"
+                      } `}
+                    >
+                      - {msg.sender}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="h-[10%] p-4 bg-white shadow-md w-full">
         <div className="flex justify-center items-center">
           <input
