@@ -28,13 +28,18 @@ const Page = () => {
       sender: "Krish",
     };
 
-    const response = await axios.post("/api/chat", {
-      prompt: inputValue,
+    const response = await axios.post(`https://generativelanguage.googleapis.com/v1beta/tunedModels/socratic-teaching-assistant-zeovionhaia7:generateContent?key=` + process.env.NEXT_PUBLIC_API_KEY, {
+      "contents": [{
+        "parts": [{
+          "text": inputValue
+          }]
+        }]
     });
+   
 
-    if (response.data.message === "success") {
+    if (response.data.candidates.content.parts.text) {
       const responseMessage: ChatMessage = {
-        message: response.data.data,
+        message: response.data.candidates.content.parts.text,
         sender: "Bot",
       };
 
