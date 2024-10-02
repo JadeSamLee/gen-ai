@@ -21,7 +21,7 @@ const SideBar: React.FC<SideBarProps> = ({ links }) => {
   return (
     <div className="fixed flex flex-col items-center  gap-3 left-0  h-[100vh] bg-[#F6F6F6] w-[15vw] border text-black shadow-xl ">
       <h1 className="text-2xl font-bold tracking-wider text-center mt-10 mb-10">
-        GEN AI
+        SOCRATES AI
       </h1>
       <div className="flex flex-col  gap-3 pr-12">
         {links.map((link) => (
