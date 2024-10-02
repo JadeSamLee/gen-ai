@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { BsSendFill } from "react-icons/bs";
+import axios from "axios";
 
 interface ChatMessage {
-  id: number;
   message: string;
   sender: string;
 }
@@ -20,16 +20,28 @@ const Page = () => {
     "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
   ];
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (inputValue.trim() === "") return;
 
     const newMessage: ChatMessage = {
-      id: messages.length + 1,
       message: inputValue,
       sender: "Krish",
     };
 
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    const response = await axios.post("/api/chat", {
+      prompt: inputValue,
+    });
+
+    if (response.data.message === "success") {
+      const responseMessage: ChatMessage = {
+        message: response.data.data,
+        sender: "Bot",
+      };
+
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+
+      setMessages((prevMessages) => [...prevMessages, responseMessage]);
+    }
     setInputValue("");
   };
 
@@ -46,7 +58,7 @@ const Page = () => {
           <div className="grid grid-cols-4 gap-10 p-5">
             {cardContents.map((card) => (
               <div className="flex flex-col p-7 border bg-gray-200 text-black rounded-xl cursor-pointer">
-                <p className="text-md font-bold">{card}</p>
+                <p className="text-md font-semibold">{card}</p>
               </div>
             ))}
           </div>
@@ -57,7 +69,6 @@ const Page = () => {
             <div className="overflow-y-auto h-full flex flex-col space-y-2">
               {messages.map((msg) => (
                 <div
-                  key={msg.id}
                   className={`p-2 ${
                     msg.sender === "Krish" ? "text-right" : "text-left"
                   }`}
