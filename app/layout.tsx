@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import SideBar from "@/components/Sidebar";
-import { RiBarChart2Fill } from "react-icons/ri";
 import { IoChatboxSharp } from "react-icons/io5";
 
 const geistMono = localFont({
