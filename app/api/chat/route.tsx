@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import { NextResponse, NextRequest } from "next/server";
 import axios from "axios";
 
