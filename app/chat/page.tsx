@@ -25,7 +25,7 @@ const Page = () => {
 
     const newMessage: ChatMessage = {
       message: inputValue,
-      sender: "Krish",
+      sender: "User",
     };
 
     const response = await axios.post("/api/chat/", {
@@ -61,12 +61,12 @@ const Page = () => {
                 <div
                   key={index}
                   className={`p-2 ${
-                    msg.sender === "Krish" ? "text-right" : "text-left"
+                    msg.sender === "User" ? "text-right" : "text-left"
                   }`}
                 >
                   <div
                     className={`p-3 rounded-lg inline-block max-w-xs ${
-                      msg.sender === "Krish"
+                      msg.sender === "User"
                         ? "bg-gray-800 text-white"
                         : "bg-gray-300 text-black"
                     } shadow-md`}
@@ -74,7 +74,7 @@ const Page = () => {
                     <p className="text-sm mb-1 text-left">{msg.message}</p>
                     <p
                       className={`text-xs ${
-                        msg.sender === "Krish"
+                        msg.sender === "User"
                           ? "text-gray-400"
                           : "text-gray-600"
                       } `}
