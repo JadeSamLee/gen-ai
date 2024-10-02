@@ -13,12 +13,12 @@ const Page = () => {
 
   const [inputValue, setInputValue] = useState("");
 
-  const cardContents = [
-    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
-    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
-    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
-    "Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
-  ];
+  //const cardContents = [
+    //"Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    //"Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    //"Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+    //"Provide debugging option for ⚠ Fast Refresh had to perform a full reload. Read more: ",
+  //];
 
   const handleSendMessage = async () => {
     if (inputValue.trim() === "") return;
