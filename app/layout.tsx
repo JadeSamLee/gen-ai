@@ -26,10 +26,7 @@ export default function RootLayout({
       <body className={`${geistMono.className}`}>
         <SideBar
           links={[
-            {
-              name: "Dashboard",
-              icon: <RiBarChart2Fill />,
-            },
+           
             {
               name: "Chat",
               icon: <IoChatboxSharp />,
