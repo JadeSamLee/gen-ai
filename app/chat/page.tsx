@@ -56,8 +56,11 @@ const Page = () => {
       {messages.length == 0 ? (
         <div className="flex flex-col ">
           <div className="grid grid-cols-4 gap-10 p-5">
-            {cardContents.map((card) => (
-              <div className="flex flex-col p-7 border bg-gray-200 text-black rounded-xl cursor-pointer">
+            {cardContents.map((card, index) => (
+              <div
+                key={index}
+                className="flex flex-col p-7 border bg-gray-200 text-black rounded-xl cursor-pointer"
+              >
                 <p className="text-md font-semibold">{card}</p>
               </div>
             ))}
@@ -67,8 +70,9 @@ const Page = () => {
         <div className="h-full">
           <div className="h-[90%] p-5">
             <div className="overflow-y-auto h-full flex flex-col space-y-2">
-              {messages.map((msg) => (
+              {messages.map((msg, index) => (
                 <div
+                  key={index}
                   className={`p-2 ${
                     msg.sender === "Krish" ? "text-right" : "text-left"
                   }`}

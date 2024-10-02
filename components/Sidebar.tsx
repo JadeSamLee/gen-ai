@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React from "react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 interface SideBarProps {
@@ -13,16 +12,6 @@ interface TabDetails {
   name: string;
   icon: React.ReactNode;
 }
-
-const styles = {
-  rippleOverlay: {
-    backgroundImage: "url('/assets/images/texture.webp')",
-    opacity: 0.4,
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-  },
-};
 
 const SideBar: React.FC<SideBarProps> = ({ links }) => {
   const pathname = usePathname();
