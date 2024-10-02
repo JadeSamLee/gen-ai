@@ -53,20 +53,7 @@ const Page = () => {
 
   return (
     <div className="h-screen flex flex-col justify-end bg-gray-100">
-      {messages.length == 0 ? (
-        <div className="flex flex-col ">
-          <div className="grid grid-cols-4 gap-10 p-5">
-            {cardContents.map((card, index) => (
-              <div
-                key={index}
-                className="flex flex-col p-7 border bg-gray-200 text-black rounded-xl cursor-pointer"
-              >
-                <p className="text-md font-semibold">{card}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : (
+      
         <div className="h-full">
           <div className="h-[90%] p-5">
             <div className="overflow-y-auto h-full flex flex-col space-y-2">
@@ -100,7 +87,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-      )}
+      
 
       <div className="h-[10%] p-4 bg-white shadow-md w-full">
         <div className="flex justify-center items-center">
