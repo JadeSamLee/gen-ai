@@ -1,16 +1,29 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse, NextRequest } from "next/server";
+import axios from "axios";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { prompt } = body;
 
-    const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_API_KEY || "");
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const result = await model.generateContent(prompt);
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/tunedModels/socratic-teaching-assistant-zeovionhaia7:generateContent?key=` +
+        process.env.NEXT_PUBLIC_API_KEY,
+      {
+        contents: [
+          {
+            parts: [
+              {
+                text: prompt,
+              },
+            ],
+          },
+        ],
+      }
+    );
 
-    const responseText = result.response.text();
+    const responseText = response.data.candidates[0].content.parts[0].text;
 
     return NextResponse.json(
       {
@@ -20,10 +33,8 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: unknown) {
-    // Change 'any' to 'unknown'
     console.log("Error while fetching response :: ", error);
 
-    // Optionally, you can cast 'error' if you need to access specific properties
     if (error instanceof Error) {
       return NextResponse.json(
         { message: "Failed", error: error.message },
